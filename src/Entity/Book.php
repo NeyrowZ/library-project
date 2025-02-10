@@ -25,7 +25,7 @@ class Book
     /**
      * @var Collection<int, Tag>
      */
-    #[ORM\ManyToMany(targetEntity: Book::class, inversedBy: 'books')]
+    #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'books')]
     private Collection $tags;
 
     /**

@@ -21,7 +21,7 @@ class Tag
     /**
      * @var Collection<int, Book>
      */
-    #[ORM\ManyToMany(targetEntity: Tag::class, mappedBy: 'tags')]
+    #[ORM\ManyToMany(targetEntity: Book::class, mappedBy: 'tags')]
     private Collection $books;
 
     public function __construct()
