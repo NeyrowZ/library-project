@@ -10,14 +10,24 @@
         {% endblock %}
     </head>
     <body>
-        {% block header %}
-            <header>
-                <h1>Library</h1>
-            </header>
+        {% block body %}
+            {% block header %}
+                <header>
+                    <h1>Library</h1>
+                </header>
+            {% endblock %}
+            <main class="container">
+                {% block main %}{% endblock %}
+            </main>
+            {% block footer %}{% endblock %}
         {% endblock %}
-        <main>
-            {% block body %}{% endblock %}
-        </main>
-        {% block footer %}{% endblock %}
     </body>
 </html>
+
+
+
+        {% block body %}
+            <main class="dashboard">
+                
+            </main>
+        {% endblock %}
