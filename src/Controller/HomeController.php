@@ -2,19 +2,19 @@
 
 namespace App\Controller;
 
+use App\Repository\TagRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use App\Repository\BookRepository;
 
 final class HomeController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
-    public function index(BookRepository $bookRepo): Response
+    public function index(TagRepository $tagRepo): Response
     {
-        $books = $bookRepo->findAll();
+        $tags = $tagRepo->findAll();
         return $this->render('home/index.html.twig', [
-            'books' => $books
+            'tags' => $tags
         ]);
     }
 }
