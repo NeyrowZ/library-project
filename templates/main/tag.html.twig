@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ tag.name }}{% endblock %}
+
+{% block body %}
+	<main>
+		<div class="tags">
+			<div class="tag">
+				<h1 class="tag-name">{{ tag.name }}</h1>
+				<div class="btn-container">
+					<a class="btn" href="{{ path('app_home') }}"><span>Retour</span></a>
+				</div>
+				<div class="books">
+					{% for book in tag.books %}
+						<article class="book">
+							<a href="{{ path('app_book', {'id': book.id}) }}">
+								<h2>{{ book.name }}</h2>
+								{# {% if book.img %}
+			                    <img src="{{book.img}}" alt="{{book.name}}">
+                                {% else %} #}
+								<img class="img-home" src="{{ asset('imgs/err.jpg') }}" alt="error-img">
+								{# {% endif %} #}
+								<p>{{ book.summary }}</p>
+							</a>
+							<a class="btn"><span><i class="fa-solid fa-cart-plus"></i></span></a>
+						</article>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</main>
+{% endblock %}

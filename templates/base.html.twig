@@ -1,25 +1,55 @@
-<!DOCTYPE html>
+{% if layout is not defined %}
+    {% set layout = true %}
+{% endif %}
 <html>
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}404{% endblock %} - Library</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
         {% block stylesheets %}{% endblock %}
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
     </head>
     <body>
+        {% if layout %}
+            <header>
+                <h1><a href="{{ path('app_home') }}">Library</a></h1>
+                <nav>
+                    <ul>
+                        {% if app.user and is_granted('ROLE_ADMIN') == 'app_account' %}
+                            <li><a href="{{ path('app_dashboard') }}">Dashboard</a></li>
+                        {% endif %}
+                        {% if app.user and app.request.attributes.get('_route') == 'app_account' %}
+                            <li><a href="{{ path('app_logout') }}"><i class="icon fa-solid fa-right-from-bracket"></i></a></li>
+                        {% endif %}
+                        <li id="basket"><a><i class="icon fa-solid fa-cart-shopping"></i></a></li>
+                        <li><a href="{{ app.user ? path('app_account') : path('app_login') }}"><i class="icon fa-solid fa-circle-user"></i></a></li>
+                    </ul>
+                </nav>
+            </header>
+        {% endif %}
         {% block body %}
-            {% block header %}
-                <header>
-                    <h1>Library</h1>
-                </header>
-            {% endblock %}
-            <main class="container">
-                {% block main %}{% endblock %}
-            </main>
-            {% block footer %}{% endblock %}
+
         {% endblock %}
+        {% if layout %}
+            <footer>
+            <p>Copyright &copy; 2025 Tous Droit Réserver.</p>
+            </footer>
+        {% endif %}
+        {% if layout %}
+            <div id="basket-menu" class="basket">
+                <div class="head">
+                    <h1>Panier</h1>
+                    <a id="close" class="close"><i class="icon fa-solid fa-xmark"></i></a>
+                </div>
+                <div id="books">
+                    {% for book in app.session.get('cart') %}
+                        <h3>{{ book.name }}</h3>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+        {% block importmap %}{{ importmap('app') }}{% endblock %}
+        <script src="{{ asset('js/cart.js') }}"></script>
+        {% block javascripts %}{% endblock %}
     </body>
 </html>

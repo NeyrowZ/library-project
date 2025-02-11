@@ -1,9 +1,117 @@
 {% extends 'base.html.twig' %}
 
+{% set layout = false %} {# Disables header and footer #}
+
 {% block title %}Dashboard{% endblock %}
 
 {% block body %}
-    <main class="dashboard">
-        <h1>Dashboard</h1>
-    </main>
+	<div class="dashboard">
+		<div class="books">
+			<div class="head">
+				<div class="title">
+					<i class="icon fa-solid fa-circle-user"></i>
+					<h1>Books</h1>
+				</div>
+				<div class="iconTextInput">
+					<i class="icon fa-solid fa-magnifying-glass"></i>
+					<input type="text" id="books-search" placeholder="Search...">
+				</div>
+			</div>
+			<table>
+				<thead>
+					<tr>
+						<td>
+							<strong>Id</strong>
+						</td>
+						<td class="name">
+							<strong>Name</strong>
+						</td>
+						<td class="summary">
+							<strong>Summary</strong>
+						</td>
+						<td class="tags">
+							<strong>Tags</strong>
+						</td>
+						<td>
+							<strong>Actions</strong>
+						</td>
+					</tr>
+				</thead>
+				<tbody id="books">
+					{% for book in books %}
+						<tr id="{{ book.name }}{% for tag in book.tags %}!{{ tag.name}}{% endfor %}">
+							<td>{{ book.id }}</td>
+							<td class="name">{{ book.name }}</td>
+							<td class="summary">{{ book.summary }}</td>
+							<td class="tags">
+                                {% for tag in book.tags %}
+                                    <span class="tag">{{ tag.name }}</span>
+                                {% endfor %}
+                            </td>
+							<td>
+								<a class="action delete">Delete</a>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		<div class="users">
+			<div class="head">
+				<div class="title">
+					<i class="icon fa-solid fa-circle-user"></i>
+					<h1>Users</h1>
+				</div>
+				<div class="iconTextInput">
+					<i class="icon fa-solid fa-magnifying-glass"></i>
+					<input type="text" id="users-search" placeholder="Search...">
+				</div>
+			</div>
+			<table>
+				<thead>
+					<tr>
+						<td>
+							<strong>Id</strong>
+						</td>
+						<td class="username">
+							<strong>Username</strong>
+						</td>
+						<td class="email">
+							<strong>Email</strong>
+						</td>
+						<td>
+							<strong>Actions</strong>
+						</td>
+					</tr>
+				</thead>
+				<tbody id="users">
+					{% for user in users %}
+						<tr id="{{ user.username }}!{{ user.email }}">
+							<td>{{ user.id }}</td>
+							<td class="username">{{ user.username }}</td>
+							<td class="email">{{ user.email }}</td>
+							<td>
+								<a class="action delete">Delete</a>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<script>
+        search('books-search', 'books');
+        search('users-search', 'users');
+        function search(input, table) {
+            document.getElementById(input).addEventListener('input', (e) => {
+                for (const user of document.getElementById(table).children) {
+                    if (!user.id.toLowerCase().includes(e.target.value.toLowerCase())) {
+                        user.style.display = 'none';
+                    } else {
+                        user.style.display = 'table-row';
+                    }
+                }
+            });
+        }
+	</script>
 {% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Account{% endblock %}
+
+{% block body %}
+    <main>
+        <h1>Account</h1>
+        <ul>
+            <li>{{ app.user.username }}</li>
+            <li>{{ app.user.email }}</li>
+        </ul>
+        {# <h2>Orders</h2>
+        <ul>
+            {% for order in app.user.orders %}
+                <li>
+                    <h3>Order {{ order.id }}</h3>
+                    <ul>
+                        <li>{{ order.date|date('Y-m-d') }}</li>
+                        <li>{{ order.returnDate|date('Y-m-d') }}</li>
+                        <li>
+                            <ul>
+                                {% for book in order.books %}
+                                    <li>{{ book.name }}</li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            {% endfor %}
+        </ul> #}
+    </main>
+{% endblock %}
