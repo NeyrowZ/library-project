@@ -4,16 +4,32 @@
 
 {% block body %}
     <main>
-        <h1>Register</h1>
-        {{ form_errors(registrationForm) }}
-        {{ form_start(registrationForm) }}
-            {{ form_row(registrationForm.username) }}
-            {{ form_row(registrationForm.email) }}
-            {{ form_row(registrationForm.plainPassword, {
-                label: 'Password'
-            }) }}
-            {{ form_row(registrationForm.agreeTerms) }}
-            <button type="submit" class="btn">Register</button>
-        {{ form_end(registrationForm) }}
+        <div class="register">
+            <h1>🧛 Créer un Compte 🩸</h1>
+            {{ form_errors(registrationForm) }}
+            {{ form_start(registrationForm) }}
+                {{ form_label(registrationForm.username) }}
+                {{ form_widget(registrationForm.username) }}
+
+                {{ form_label(registrationForm.email) }}
+                {{ form_widget(registrationForm.email) }}
+
+                {{ form_label(registrationForm.plainPassword) }}
+                {{ form_widget(registrationForm.plainPassword) }}
+
+                <div class="checkbox">
+                    {{ form_label(registrationForm.agreeTerms) }}
+                    {{ form_widget(registrationForm.agreeTerms) }}
+                </div>
+
+                <div class="btn-container">
+                    <button class="btn" type="submit"><span>Créer Mon Compte GRATUITEMENT</span></button>
+                </div>
+            {{ form_end(registrationForm) }}
+            <div class="btn-container">
+                <p>Vous êtes déjà inscris ?</p>
+                <a class="btn" href="{{path('app_login')}}"><span>CONNECTEZ-VOUS GRATUITEMENT</span></a>
+            </div>
+        </div>
     </main>
 {% endblock %}

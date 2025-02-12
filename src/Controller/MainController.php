@@ -5,15 +5,9 @@ namespace App\Controller;
 use App\Repository\TagRepository;
 use App\Entity\Book;
 use App\Entity\Tag;
-use App\Entity\Order;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-
-use DateTimeImmutable;
-use DateTimeZone;
 
 final class MainController extends AbstractController
 {
@@ -27,7 +21,7 @@ final class MainController extends AbstractController
     }
 
     #[Route('/tag/{id}', name: 'app_tag')]
-    public function roman(Tag $tag): Response
+    public function tag(Tag $tag): Response
     {
         return $this->render('main/tag.html.twig', [
             'tag' => $tag

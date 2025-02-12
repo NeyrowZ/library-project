@@ -4,17 +4,25 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}404{% endblock %} - Library</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+        <title>{% block title %}404{% endblock %} - Vamp Library</title>
+        {# <link rel="icon" href="{{ asset('imgs/vamp-library.jpg') }}"> #}
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>🧛</text></svg>">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
         {% if layout %}
             <header>
-                <h1><a href="{{ path('app_home') }}">Library</a></h1>
+                <h1><a href="{{ path('app_home') }}">🧛 Vamp Library</a></h1>
                 <nav>
-                    <ul>
+                     <ul>
+                        {# <li>
+                            <select name="" id="">
+						        {% for tag in tags %}
+                                    <option value="">{{ tag.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </li> #}
                         {% if app.user and is_granted('ROLE_ADMIN') == 'app_account' %}
                             <li><a href="{{ path('app_dashboard') }}">Dashboard</a></li>
                         {% endif %}
@@ -32,7 +40,7 @@
         {% endblock %}
         {% if layout %}
             <footer>
-            <p>Copyright &copy; 2025 Tous Droit Réserver.</p>
+                <p>Copyright &copy; 2025 Tous Droit Réserver.</p>
             </footer>
         {% endif %}
         {% if layout %}
@@ -41,11 +49,28 @@
                     <h1>Panier</h1>
                     <a id="close" class="close"><i class="icon fa-solid fa-xmark"></i></a>
                 </div>
-                <div id="books">
-                    {% for book in app.session.get('cart') %}
-                        <h3>{{ book.name }}</h3>
-                    {% endfor %}
+                <div class="items">
+                    {% if app.session.get('cart') is empty %}
+                        <span>Vôtre panier est vide.</span>
+                    {% else %}
+                        {% for book in app.session.get('cart') %}
+                            <h3><a href="{{ path('app_book', {'id': book.id}) }}"><i class="fa-solid fa-book"></i> {{ book.name }}</a></h3>
+                        {% endfor %}
+                    {% endif %}
                 </div>
+                {% if app.session.get('cart') is not empty %}
+                    <div class="foot">
+                        <div class="btn-container">
+                            {% if app.user %}
+                                <form method="post" action="{{ path('app_order_cart') }}">
+                                    <button action="submit" class="btn"><span>Valider Mon Panier</span></button>
+                                </form>
+                            {% else %}
+                                <a class="btn" href="{{ path('app_login') }}"><span>CONNECTEZ-VOUS</span></a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif %}
             </div>
         {% endif %}
         {% block importmap %}{{ importmap('app') }}{% endblock %}

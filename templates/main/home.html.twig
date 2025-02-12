@@ -4,6 +4,11 @@
 
 {% block body %}
 	<main>
+        <div class="head">
+            <h1 style="color: var(--text-primary)">Vamp Library</h1>
+            <p>Bienvenue sur <i style="color: var(--text-primary)">🧛 Vamp Library</i>, votre bibliothèque en ligne dédiée à la location de livres ! Plongez dans un vaste catalogue d'ouvrages, explorez de nouvelles histoires <i style="color: #ff3333">Sanglantes 🩸</i> et laissez-vous emporter par la magie de la lecture, sans encombrer vos étagères. Inscrivez-vous <i style="color: var(--text-primary)">GRATUITEMENT</i> dès maintenant et commencez votre prochaine aventure littéraire !</p>
+            <img src="{{ asset('imgs/banner.png') }}">
+        </div>
 		<div class="tags">
 			{% for tag in tags %}
 				<div class="tag">
@@ -16,17 +21,16 @@
 									{# {% if book.img %} #}
 									{# <img src="{{book.img}}" alt="{{book.name}}">
 									{% else %} #}
-									<img
-									class="img-home" src="{{ asset('imgs/err.jpg') }}" alt="error-img">
-									{# {% endif %}      #}
+									<img class="img-home" src="{{ asset('imgs/err.jpg') }}" alt="error-img">
+									{# {% endif %} #}
 									<p>{{ book.summary }}</p>
 								</a>
-										<div class="btn-container">
-								<form method="post" action="{{ path('app_cart_add') }}">
-								<input type="hidden" name="id" value="{{ book.id }}">
-							<button action="submit" class="btn"><span><i class="fa-solid fa-cart-plus"></i></span></button>
-							</form>
-							</div>
+								<div class="btn-container">
+                                    <form method="post" action="{{ path('app_cart_add') }}">
+                                        <input type="hidden" name="id" value="{{ book.id }}">
+                                        <button action="submit" class="btn"><span><i class="fa-solid fa-cart-plus"></i></span></button>
+                                    </form>
+							    </div>
 							</article>
 						{% endfor %}
 					</div>

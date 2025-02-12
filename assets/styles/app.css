@@ -1,5 +1,6 @@
 :root {
     --text-primary: #5029ff;
+    --text-secondary: #fff;
 
     --bg-primary: #101010;
     --bg-secondary: #151515;
@@ -21,12 +22,12 @@ body {
     width: 100vw;
     overflow-x: hidden;
 
-    color: #fff;
+    color: var(--text-secondary);
     background: var(--bg-primary);
     font-family: 'Consolas';
 
     a {
-        color: #fff;
+        color: var(--text-secondary);
         text-decoration: none;
         cursor: pointer;
         transition: .5s;
@@ -37,7 +38,8 @@ body {
         }
     }
 
-    header, footer {
+    header,
+    footer {
         width: 100%;
         height: 100px;
         background: var(--bg-secondary);
@@ -85,14 +87,36 @@ body {
     }
 
     main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-block: 50px;
+        gap: 50px;
         min-height: calc(100vh - 200px);
+
+        .head {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            width: 60%;
+            padding: 20px;
+            border-radius: 20px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-primary);
+
+            img {
+                width: 100%;
+                border-radius: 20px;
+            }
+        }
 
         .tags {
             display: flex;
             flex-direction: column;
             gap: 50px;
-
-            margin-block: 50px;
 
             .tag {
                 display: flex;
@@ -118,11 +142,12 @@ body {
                 width: calc(250px * 5 + 4 * 20px);
 
                 .book {
-                    border: 1px solid #FFFFFF;
+                    border: 1px solid var(--border-primary);
                     border-radius: 15px;
                     padding: 15px;
                     text-align: center;
                     width: 250px;
+                    background-color: var(--bg-secondary);
 
                     h2 {
                         margin-bottom: 15px;
@@ -156,8 +181,9 @@ body {
         margin-top: 50px;
         gap: 25px;
         margin-block: 50px;
-        border: solid 1px #fff;
+        border: solid 1px var(--border-primary);
         border-radius: 25px;
+        background-color: var(--bg-secondary);
 
         .img-book {
             border-radius: 25px;
@@ -167,8 +193,8 @@ body {
 
     .btn-container {
         display: flex;
+        margin: 10px;
         gap: 10px;
-        margin-top: 50px;
 
         .btn {
             align-items: center;
@@ -177,7 +203,7 @@ body {
             border-radius: 8px;
             box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
             box-sizing: border-box;
-            color: #FFFFFF;
+            color: var(--text-secondary);
             display: flex;
             font-size: 20px;
             justify-content: center;
@@ -193,7 +219,8 @@ body {
             cursor: pointer;
             text-align: center;
 
-            &:active, &:hover {
+            &:active,
+            &:hover {
                 outline: 0;
             }
 
@@ -214,6 +241,8 @@ body {
 
     .basket {
         position: fixed;
+        display: flex;
+        flex-direction: column;
         width: 300px;
         height: 100vh;
         right: 0;
@@ -238,19 +267,130 @@ body {
             }
         }
 
+        .items {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 10px;
+        }
+
+        .foot {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
         &.visible {
             transition: 1s;
             transform: translateX(0px);
         }
     }
+
+    .login, .register {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        padding: 20px;
+        border-radius: 20px;
+        background: var(--bg-secondary);
+        border: solid 1px var(--border-primary);
+
+        form {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            gap: 20px;
+
+            input {
+                display: flex;
+                flex-direction: column;
+                padding: 15px;
+                border-radius: 20px;
+                background-color: transparent;
+                color: var(--text-secondary);
+                background: var(--bg-primary);
+                border: solid 1px var(--border-primary);
+            }
+
+            .checkbox {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+               
+            }
+        }
+
+        .btn-container {
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+        }
+    }
+    .account {
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+
+        .infos, .orders {
+            display: flex;
+            flex-direction: column;
+
+            .content {
+                padding: 15px;
+
+                &.orders-list {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+
+                    .order {
+                        min-width: 450px;
+                        padding: 10px;
+                        border-radius: 20px;
+                        background: var(--bg-secondary);
+                        border: 1px solid var(--border-primary);
+
+                        .title {
+                            display: flex;
+                            justify-content: space-between;
+                            padding: 5px;
+
+                            .date {
+                                color: var(--border-primary);
+                            }
+                        }
+
+                        .book-list {
+                            padding: 20px;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .dashboard {
     display: flex;
     gap: 25px;
     padding-block: 50px;
 
-    .books, .users {
+    .books,
+    .users {
         display: flex;
         flex-direction: column;
         gap: 15px;
@@ -336,7 +476,7 @@ body {
                     background: var(--text-primary);
 
                     &:hover {
-                        color: #fff;
+                        color: var(--text-secondary);
                     }
                 }
             }
@@ -370,10 +510,10 @@ body {
             outline: none;
             border: none;
             transition: .5s;
-            color: #fff;
+            color: var(--text-secondary);
         }
 
-        &:hover, &:focus-within {
+        &:hover,&:focus-within {
             transition: 1s;
             border: 1px solid var(--text-primary);
 

@@ -17,13 +17,10 @@ final class CartController extends AbstractController
     {
         $bookId = $request->request->get('id');
         $cart = $session->get('cart') ?? [];
-
-        if (!in_array($bookId, $cart)) {
+        if (count($cart) < 5) {
             $cart[] = $bookRepo->find($bookId);
         }
-
         $session->set('cart', $cart);
-
-        return $this->redirectToRoute('app_book', ['id' => $bookId]);
+        return $this->redirectToRoute('app_home');
     }
 }

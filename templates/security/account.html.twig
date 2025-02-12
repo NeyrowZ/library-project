@@ -4,29 +4,31 @@
 
 {% block body %}
     <main>
-        <h1>Account</h1>
-        <ul>
-            <li>{{ app.user.username }}</li>
-            <li>{{ app.user.email }}</li>
-        </ul>
-        {# <h2>Orders</h2>
-        <ul>
-            {% for order in app.user.orders %}
-                <li>
-                    <h3>Order {{ order.id }}</h3>
-                    <ul>
-                        <li>{{ order.date|date('Y-m-d') }}</li>
-                        <li>{{ order.returnDate|date('Y-m-d') }}</li>
-                        <li>
-                            <ul>
+        <div class="account">
+            <div class="infos">
+                <h1>Informations de Compte</h1>
+                <div class="content">
+                    <h3>Nom d'Utilisatuer: <a>{{ app.user.username }}</a></h3>
+                    <h3>Adresse Email: <a>{{ app.user.email }}</a></h3>
+                </div>
+            </div>
+            <div class="orders">
+                <h1>Commandes</h1>
+                <div class="content orders-list">
+                    {% for order in app.user.orders %}
+                        <div class="order">
+                            <div class="title">
+                                <h3>Emprunt n°{{ order.id }}</h3><h4 class="date">Du {{ order.date|date('d/m/Y') }} au {{ order.returnDate|date('d/m/Y') }}</h4>
+                            </div>
+                            <div class="book-list">
                                 {% for book in order.books %}
-                                    <li>{{ book.name }}</li>
+                                    <h4>{{ book.name }}</h4>
                                 {% endfor %}
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-            {% endfor %}
-        </ul> #}
+                            </div>
+                        </div>
+                        <br>
+                    {% endfor %}
+                </div>
+            </div>
     </main>
 {% endblock %}

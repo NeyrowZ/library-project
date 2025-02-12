@@ -95,6 +95,17 @@ class Order
         return $this;
     }
 
+    public function addBooks(array $books): static
+    {
+        foreach ($books as $book) {
+            if (!$this->books->contains($book)) {
+                $this->books->add($book);
+            }
+        }
+
+        return $this;
+    }
+
     public function removeBook(Book $book): static
     {
         $this->books->removeElement($book);
