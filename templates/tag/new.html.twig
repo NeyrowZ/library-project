@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+{% set layout = false %}{# Disables header and footer #}
+{% block title %}New Tag{% endblock %}
+
+{% block body %}
+       <main>
+        <div class="tag-new">
+            {# <div class="btn-container"> #}
+                <a class="button-admin" href="{{ path('app_dashboard') }}"><span>Retour</span></a>
+            {# </div> #}
+            <h1>New</h1>
+            {{ form_errors(form) }}
+            {{ form_start(form) }}
+            {{ form_label(form.name) }}
+            {{ form_widget(form.name) }}
+            {# <div class="btn-container"> #}
+                <button class="button-admin"><span>Modifier</span></button>
+            {# </div> #}
+            {{ form_end(form) }}
+
+        </div>
+    </main>
+{% endblock %}

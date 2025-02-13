@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+{% set layout = false %}{# Disables header and footer #}
+{% block title %}Edit Book{% endblock %}
+
+{% block body %}
+<main>
+    <div class="book-edit">
+        <h1>Modifier</h1>
+        {{ form_errors(form) }}
+        {{ form_start(form) }}
+            {{ form_label(form.name) }}
+            {{ form_widget(form.name) }}
+
+            {{ form_label(form.summary) }}
+            {{ form_widget(form.summary) }}
+
+            {{ form_label(form.cover) }}
+                {% if book.cover %}
+                    <img class="img-edit" src="{{ asset('imgs/uploads/' ~ book.cover) }}" alt="{{ book.name }}">
+                {% else %}
+                    <img class="img-edit" src="{{ asset('imgs/err.jpg') }}" alt="error-img">
+                {% endif %}
+            {{ form_widget(form.cover) }}
+            
+            {{ form_label(form.tags) }}
+            {{ form_widget(form.tags) }}
+
+            {# <div class="btn-container"> #}
+                <button class="button-admin"><span>Modifier</span></button>
+            {# </div> #}
+        {{ form_end(form) }}
+        {# <div class="btn-container"> #}
+            <a class="button-admin" href="{{ path('app_book', {'id': book.id}) }}"><span>Retour</span></a>
+        {# </div> #}
+    </div>
+</main>
+
+{% endblock %}
+
