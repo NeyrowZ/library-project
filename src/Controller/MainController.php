@@ -19,20 +19,4 @@ final class MainController extends AbstractController
             'tags' => $tags
         ]);
     }
-
-    #[Route('/tag/{id}', name: 'app_tag')]
-    public function tag(Tag $tag): Response
-    {
-        return $this->render('main/tag.html.twig', [
-            'tag' => $tag
-        ]);
-    }
-
-    #[Route('/book/{id}', name: 'app_book')]
-    public function book(Book $book): Response
-    {
-        return $this->render('main/book.html.twig', [
-            'book' => $book
-        ]);
-    }
 }

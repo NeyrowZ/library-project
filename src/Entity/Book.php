@@ -8,24 +8,30 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\Serializer\Annotation\Groups;
+
 #[ORM\Entity(repositoryClass: BookRepository::class)]
 class Book
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['book:read', 'tag:read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['book:read', 'tag:read'])]
     private ?string $name = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[Groups(['book:read', 'tag:read'])]
     private ?string $summary = null;
 
     /**
      * @var Collection<int, Tag>
      */
     #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'books')]
+    #[Groups(['book:read'])]
     private Collection $tags;
 
     /**
@@ -33,6 +39,9 @@ class Book
      */
     #[ORM\ManyToMany(targetEntity: Order::class, mappedBy: 'books')]
     private Collection $orders;
+
+    #[ORM\Column(length: 255)]
+    private ?string $cover = null;
 
     public function __construct()
     {
@@ -119,6 +128,18 @@ class Book
         if ($this->orders->removeElement($order)) {
             $order->removeBook($this);
         }
+
+        return $this;
+    }
+
+    public function getCover(): ?string
+    {
+        return $this->cover;
+    }
+
+    public function setCover(string $cover): static
+    {
+        $this->cover = $cover;
 
         return $this;
     }
