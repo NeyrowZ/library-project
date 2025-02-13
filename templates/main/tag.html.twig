@@ -15,11 +15,11 @@
 						<article class="book">
 							<a href="{{ path('app_book', {'id': book.id}) }}">
 								<h2>{{ book.name }}</h2>
-									{% if book.cover %}
-									    <img class="img-tags" src="{{ asset('imgs/uploads/' ~ book.cover) }}" alt="{{ book.name }}">
-									{% else %}
-									    <img class="img-tags" src="{{ asset('imgs/err.jpg') }}" alt="error-img">
-									{% endif %}
+								{# {% if book.img %}
+			                    <img src="{{book.img}}" alt="{{book.name}}">
+                                {% else %} #}
+								<img class="img-home" src="{{ asset('imgs/err.jpg') }}" alt="error-img">
+								{# {% endif %} #}
 								<p>{{ book.summary }}</p>
 							</a>
 							<a class="btn"><span><i class="fa-solid fa-cart-plus"></i></span></a>

@@ -9,11 +9,11 @@
 			<div class="btn-container">
 				<a class="btn" href="{{ path('app_home') }}"><span>Retour</span></a>
 			</div>
-            {% if book.cover %}
-                <img class="img-show" src="{{ asset('imgs/uploads/' ~ book.cover) }}" alt="{{ book.name }}">
-            {% else %}
-                <img class="img-show" src="{{ asset('imgs/err.jpg') }}" alt="error-img">
-            {% endif %}
+			{# {% if book.img %} #}
+			{# <img src="{{book.img}}" alt="{{book.name}}">
+			{% else %} #}
+			<img class="img-book" src="{{ asset('imgs/err.jpg') }}" alt="error-img">
+			{# {% endif %} #}
 			<p>{{book.summary}}</p>
 			<div class="btn-container">
 				<form method="post" action="{{ path('app_order_book') }}">

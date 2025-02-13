@@ -11,7 +11,6 @@
 				<div class="title">
 					<i class="icon fa-solid fa-book-bookmark"></i>
 					<h1>Books</h1>
-					<button class="action"><a href="{{path('app_home')}}">Home</a></button>
 				</div>
 				<div class="iconTextInput">
 					<i class="icon fa-solid fa-magnifying-glass"></i>
@@ -25,18 +24,13 @@
 							<strong>Id</strong>
 						</td>
 						<td class="name">
-							<strong>Name</strong>	
-							<button class="action"><a href="{{path('app_book_new')}}">New Book</a></button>
+							<strong>Name</strong>
 						</td>
 						<td class="summary">
 							<strong>Summary</strong>
 						</td>
 						<td class="tags">
 							<strong>Tags</strong>
-							<button class="action"><a href="{{path('app_tag_new')}}">New Tag</a></button>
-						</td>
-						<td class="cover">
-							<strong>Cover</strong>
 						</td>
 						<td>
 							<strong>Actions</strong>
@@ -45,7 +39,7 @@
 				</thead>
 				<tbody id="books">
 					{% for book in books %}
-						<tr id="id={{ book.id }},name={{ book.name }}{% for tag in book.tags %}!{{ tag.name}}{% endfor %}">
+						<tr id="{{ book.name }}{% for tag in book.tags %}!{{ tag.name}}{% endfor %}">
 							<td>{{ book.id }}</td>
 							<td class="name">{{ book.name }}</td>
 							<td class="summary">{{ book.summary }}</td>
@@ -54,19 +48,8 @@
                                     <span class="tag">{{ tag.name }}</span>
                                 {% endfor %}
                             </td>
-                            <td class="cover">
-                                {% if book.cover %}
-                                    <img src="{{ asset('imgs/uploads/' ~ book.cover) }}" alt="{{ book.name }}">
-                                {% else %}
-                                    <img class="img-home" src="{{ asset('imgs/err.jpg') }}" alt="error-img">
-                                {% endif %}
-                            </td>
 							<td>
-                                <form method="post" action="{{ path('app_book_delete', {'id': book.id}) }}" onsubmit="return confirm('Are you sure you want to delete this book ?');">
-                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ book.id) }}">
-                                    <button class="action">Delete</button>
-									 <a class="action" href="{{ path('app_book_edit', {'id': book.id}) }}"><span>Modifer</span></a>
-                                </form>	
+								<a class="action delete">Delete</a>
 							</td>
 						</tr>
 					{% endfor %}
@@ -93,9 +76,6 @@
 						<td class="username">
 							<strong>Username</strong>
 						</td>
-						{# <td class="role">
-							<strong>Role</strong>
-						</td> #}
 						<td class="email">
 							<strong>Email</strong>
 						</td>
@@ -106,19 +86,12 @@
 				</thead>
 				<tbody id="users">
 					{% for user in users %}
-						<tr id="id={{ user.id }},username={{ user.username }},email={{ user.email }}">
+						<tr id="{{ user.username }}!{{ user.email }}">
 							<td>{{ user.id }}</td>
-							<td class="username {{ 'ROLE_ADMIN' in user.roles ? 'admin' : ''}}">{{ user.username }}</td>
+							<td class="username">{{ user.username }}</td>
 							<td class="email">{{ user.email }}</td>
 							<td>
-                                <form method="post" action="{{ path('app_user_action', {'id': user.id}) }}" onsubmit="return confirm('Are you sure you want to delete this user ?');">
-                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
-                                    <button class="action">Delete</button>
-                                </form>
-                                <form method="post" action="{{ path('app_user_action',  {'id': user.id}) }}" onsubmit="return confirm('Are you sure you want to pass admin this user ?');">
-                                    <input type="hidden" name="_token" value="{{ csrf_token('admin' ~ user.id) }}">
-                                    <button class="action" type="submit">Admin</button>
-                                </form>
+								<a class="action delete">Delete</a>
 							</td>
 						</tr>
 					{% endfor %}

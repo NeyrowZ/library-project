@@ -23,11 +23,6 @@
                             <div class="book-list">
                                 {% for book in order.books %}
                                     <h4>{{ book.name }}</h4>
-                                    	{% if book.cover %}
-									    <img class="img-account" src="{{ asset('imgs/uploads/' ~ book.cover) }}" alt="{{ book.name }}">
-									{% else %}
-									    <img class="img-account" src="{{ asset('imgs/err.jpg') }}" alt="error-img">
-									{% endif %}
                                 {% endfor %}
                             </div>
                         </div>
