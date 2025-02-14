@@ -44,12 +44,18 @@ final class BookController extends AbstractController
                     $newFilename
                 );
                 $book->setCover($newFilename);
+            }else{
+                $this->addFlash('error',' dont\'forget the cover.');
+                return $this->render('book/new.html.twig', [
+                    'book' => $book,
+                    'form' => $form,
+                ]);
             }
     
             $entityManager->persist($book);
             $entityManager->flush();
     
-            return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_dashboard', [], Response::HTTP_SEE_OTHER);
         }
     
         return $this->render('book/new.html.twig', [

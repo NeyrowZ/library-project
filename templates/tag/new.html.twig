@@ -5,17 +5,13 @@
 {% block body %}
        <main>
         <div class="tag-new">
-            {# <div class="btn-container"> #}
-                <a class="button-admin" href="{{ path('app_dashboard') }}"><span>Retour</span></a>
-            {# </div> #}
-            <h1>New</h1>
+                <a class="action" href="{{ path('app_dashboard') }}"><span>Retour</span></a>
+            <h1 class="h_dashboard">New</h1>
             {{ form_errors(form) }}
             {{ form_start(form) }}
             {{ form_label(form.name) }}
             {{ form_widget(form.name) }}
-            {# <div class="btn-container"> #}
-                <button class="button-admin"><span>Modifier</span></button>
-            {# </div> #}
+                <button class="action"><span>Modifier</span></button>
             {{ form_end(form) }}
 
         </div>

@@ -12,7 +12,7 @@
             {% if book.cover %}
                 <img class="img-show" src="{{ asset('imgs/uploads/' ~ book.cover) }}" alt="{{ book.name }}">
             {% else %}
-                <img class="img-show" src="{{ asset('imgs/err.jpg') }}" alt="error-img">
+                <img class="img-show-error" src="{{ asset('imgs/err.jpg') }}" alt="error-img">
             {% endif %}
 			<p>{{book.summary}}</p>
 			<div class="btn-container">

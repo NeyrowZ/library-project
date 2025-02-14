@@ -2,16 +2,14 @@
 
 {% set layout = false %}{# Disables header and footer #}
 
-{% block title %}New Book{% endblock %}
+{% block title %}Nouveau Livre{% endblock %}
 
 {% block body %}
     <main>
         <div class="book-new">
-            {# <div class="btn-container"> #}
-                <a class="button-admin" href="{{ path('app_dashboard') }}"><span>Retour</span></a>
-            {# </div> #}
-            <h1>Modifier</h1>
-            {{ form_errors(form) }}
+                <a class="action" href="{{ path('app_dashboard') }}"><span>Retour</span></a>
+            <h1 class="h_dashboard">Nouveau Livre</h1>
+           <div class="error"> {{ form_errors(form) }}</div>
             {{ form_start(form) }}
             {{ form_label(form.name) }}
             {{ form_widget(form.name) }}
@@ -25,9 +23,9 @@
             {{ form_label(form.tags) }}
             {{ form_widget(form.tags) }}
 
-            {# <div class="btn-container"> #}
-                <button class="button-admin"><span>Modifier</span></button>
-            {# </div> #}
+    
+                <button class="action"><span>Ajouter</span></button>
+       
             {{ form_end(form) }}
 
         </div>

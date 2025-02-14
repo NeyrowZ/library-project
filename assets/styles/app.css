@@ -30,7 +30,9 @@ body {
     color: var(--text-secondary);
     background: var(--bg-primary);
     font-family: 'Consolas';
-
+.error{
+    color: red;
+}
     a {
         color: var(--text-secondary);
         text-decoration: none;
@@ -195,16 +197,24 @@ body {
     .show-book {
         display: flex;
         flex-direction: column;
+        align-items: center;
         padding: 10px;
         margin-top: 50px;
+        max-width: 50%;
         gap: 25px;
         margin-block: 50px;
+        overflow: hidden;
         border: solid 1px var(--border-primary);
         border-radius: 25px;
         background-color: var(--bg-secondary);
         
         .img-show{
-            max-height: var(--img-size-XL);
+            max-width: var(--img-size-M*2);
+            max-height: var(--img-size-XL*2);
+            border-radius: 25px;
+        }
+        .img-show-error{
+            max-height: 300px;
             border-radius: 25px;
         }
     }
@@ -463,6 +473,22 @@ body {
 
 
 
+.action {
+    padding: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 3px;
+    color: var(--text-secondary);
+    background: var(--text-primary);
+    transition: .5s;
+
+    &:hover {
+        transition: .5s;
+        color: var(--text-primary);
+    }
+}
 
 .dashboard {
     display: flex;
@@ -494,19 +520,7 @@ body {
                 }
             }
         }
-        .action {
-            padding: 5px;
-            border: none;
-            cursor: pointer;
-            font-size: 18px;
-            font-weight: bold;
-            border-radius: 3px;
-            background: var(--text-primary);
 
-            &:hover {
-                color: var(--text-secondary);
-            }
-        }
         table {
             border-collapse: collapse;
             border: 1px solid rgb(50, 50, 50);
@@ -572,6 +586,14 @@ body {
                         width: 100%;
                     }
                 }
+
+                &.actions {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 5px;
+                    border-inline: none;
+                    border-bottom: none;
+                }
             }
 
         }
@@ -620,7 +642,9 @@ body {
         }
     }
 }
-
+.h_dashboard{
+    color: var(--text-primary);
+}
 ::-webkit-scrollbar {
     display: none;
 }
