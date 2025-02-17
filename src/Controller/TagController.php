@@ -22,6 +22,8 @@ final class TagController extends AbstractController
         return JsonResponse::fromJsonString($serializer->serialize($tagRepo->findAll(), 'json', ['groups' => ['tag:read']]));
     }
 
+    // http://localhost:8000/tag/api
+
     #[Route('/new', name: 'app_tag_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {

@@ -30,9 +30,11 @@ body {
     color: var(--text-secondary);
     background: var(--bg-primary);
     font-family: 'Consolas';
-.error{
-    color: red;
-}
+    
+    .error {
+        color: red;
+    }
+
     a {
         color: var(--text-secondary);
         text-decoration: none;
@@ -461,18 +463,6 @@ body {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
 .action {
     padding: 5px;
     border: none;
@@ -642,9 +632,7 @@ body {
         }
     }
 }
-.h_dashboard{
-    color: var(--text-primary);
-}
+
 ::-webkit-scrollbar {
     display: none;
 }
